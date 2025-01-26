@@ -1,0 +1,13 @@
+%YAML 1.3
+---
+- Test: [thumb_wheel_up, 10]
+- KeyPress:
+  - [Control_L, Tab]
+  - click
+...
+---
+- Test: [thumb_wheel_down, 10]
+- KeyPress:
+  - [Control_L, Shift_L, Tab]
+  - click
+...
