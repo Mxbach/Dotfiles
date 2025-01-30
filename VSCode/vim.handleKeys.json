@@ -1,0 +1,13 @@
+{
+    "vim.handleKeys": {
+        "<C-b>": false,
+        "<C-k>": false,
+        "<C-w>": false,
+        "<C-k><C-o>": false,
+        "<C-f>": false,
+        "<C-p>": false,
+        "<C-d>": true,
+        "<C-s>": false,
+        "<C-z>": false
+    }
+}
