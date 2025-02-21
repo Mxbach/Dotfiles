@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Check if a file extension was provided.
+if [ -z "$1" ]; then
+  echo "Usage: $0 file_extension [recursion_depth]"
+  echo "Example: $0 .py 2"
+  exit 1
+fi
+
+extension="$1"
+# Default recursion depth is 1 (only current directory) if not provided.
+depth="${2:-1}"
+
+# Create a temporary file to store the output.
+tmpfile=$(mktemp)
+
+# Use the 'find' command to search for files up to the specified depth.
+files=$(find . -maxdepth "$depth" -type f -name "*$extension")
+
+if [ -z "$files" ]; then
+  echo "No files found with extension $extension up to depth $depth."
+  rm "$tmpfile"
+  exit 1
+fi
+
+# Loop over each found file.
+while IFS= read -r file; do
+  if [[ -f "$file" ]]; then
+    echo "Filename: $file" >> "$tmpfile"
+    echo "----------------------------------------" >> "$tmpfile"
+    cat "$file" >> "$tmpfile"
+    echo -e "\n\n" >> "$tmpfile"
+  fi
+done <<< "$files"
+
+# Copy the temporary file content to the clipboard.
+if command -v pbcopy >/dev/null 2>&1; then
+  # macOS clipboard
+  cat "$tmpfile" | pbcopy
+elif command -v xclip >/dev/null 2>&1; then
+  # Linux using xclip
+  cat "$tmpfile" | xclip -selection clipboard
+elif command -v xsel >/dev/null 2>&1; then
+  # Linux using xsel
+  cat "$tmpfile" | xsel --clipboard --input
+else
+  echo "No clipboard utility found (pbcopy, xclip, or xsel). Please install one."
+  rm "$tmpfile"
+  exit 1
+fi
+
+# Clean up the temporary file.
+rm "$tmpfile"
+echo "Files have been copied to the clipboard."
