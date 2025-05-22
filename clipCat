@@ -37,6 +37,9 @@ done <<< "$files"
 if command -v pbcopy >/dev/null 2>&1; then
   # macOS clipboard
   cat "$tmpfile" | pbcopy
+elif command -v wl-copy >/dev/null 2>&1; then
+  # Wayland wl-clipboard
+  cat "$tmpfile" | wl-copy
 elif command -v xclip >/dev/null 2>&1; then
   # Linux using xclip
   cat "$tmpfile" | xclip -selection clipboard
@@ -44,7 +47,7 @@ elif command -v xsel >/dev/null 2>&1; then
   # Linux using xsel
   cat "$tmpfile" | xsel --clipboard --input
 else
-  echo "No clipboard utility found (pbcopy, xclip, or xsel). Please install one."
+  echo "No clipboard utility found (pbcopy, wl-copy, xclip, or xsel). Please install one."
   rm "$tmpfile"
   exit 1
 fi
