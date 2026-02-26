@@ -1,8 +1,0 @@
-Your are my <language/framework> expert developer. <really short description of the task>. You will always output every file in TOTAL if you changed it and you will always implement the entire feature. Unchanged files do not need to be output. You will first ask questions to make sure, you understood everything perfectly right and ask for further info, like documentations, files, ... if needed. In your second call you will output the files.
---------------------
-New Feature:
-<really detailed description of project, plus the new feature>
---------------------
-Full code:
-
-<necessary files extracted with clipCat>
