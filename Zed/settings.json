@@ -1,0 +1,16 @@
+{
+  "hard_tabs": false,
+  "vim": {
+    "use_system_clipboard": "on_yank",
+    "toggle_relative_line_numbers": true,
+  },
+  "minimap": {
+    "show": "never",
+  },
+  "theme": "One Dark",
+  "completions": {
+    "lsp_fetch_timeout_ms": 0,
+  },
+  "vim_mode": true,
+  "disable_ai": true,
+}
