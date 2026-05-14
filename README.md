@@ -14,6 +14,7 @@ Personal configuration files for terminal, editors, and tools.
 | `VSCode/settings.json` | VS Code editor settings |
 | `Zed/settings.json` | Zed editor settings |
 | `solaar/rules.yaml` | Solaar rules for Logitech mouse |
+| `opencode/opencode.json` | OpenCode configuration |
 | `clipCat` | Script to copy file contents to clipboard |
 
 ---
@@ -21,7 +22,7 @@ Personal configuration files for terminal, editors, and tools.
 ## tmux (`.tmux.conf`)
 
 - **Plugin manager:** [TPM](https://github.com/tmux-plugins/tpm)
-- **Theme:** [Dracula](https://draculatheme.com/tmux) with powerline, weather (Berlin), git status, and time
+- **Theme:** [Dracula](https://draculatheme.com/tmux) with powerline, git status, and time
 - **Keybindings:** Vim-style pane navigation (`h/j/k/l`), vi copy mode
 - **Mouse support:** enabled
 - **Window/pane indexing:** starts at 1, windows are automatically renumbered
@@ -29,7 +30,6 @@ Personal configuration files for terminal, editors, and tools.
 - `r` reloads the config
 
 **Plugins:**
-- `tmux-plugins/tmux-sensible`
 - `dracula/tmux`
 
 **Install TPM:**
@@ -102,6 +102,8 @@ Windows setup using WSL as the shell.
 - **Cursor:** blinking block
 - `Ctrl+Shift+T` spawns a new instance
 
+**External dependency:** the Iris theme file is expected at `themes/themes/iris.toml` and is not included in this repository.
+
 ---
 
 ## Zed (`Zed/settings.json`)
@@ -121,6 +123,12 @@ ln -s ~/Coding/Dotfiles/Zed/settings.json ~/.config/zed/settings.json
 ## VS Code (`VSCode/settings.json`)
 
 Vim extension settings with relative line numbers. Several default Vim key captures are disabled to keep native VS Code shortcuts working (`Ctrl+B`, `Ctrl+K`, `Ctrl+F`, `Ctrl+P`, `Ctrl+S`, `Ctrl+Z`).
+
+---
+
+## OpenCode (`opencode/opencode.json`)
+
+Configures the [Superpowers](https://github.com/obra/superpowers) plugin and sets Bash/edit permissions to ask before running.
 
 ---
 
