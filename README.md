@@ -1,5 +1,17 @@
 # Dotfiles
 
+## Install (Zsh + Starship)
+
+```bash
+git clone https://github.com/<your-username>/Dotfiles ~/Coding/Dotfiles
+cd ~/Coding/Dotfiles
+./install.sh
+```
+
+Requires `yay`. Installs: Oh My Zsh, Starship, fastfetch, fzf, zsh-syntax-highlighting, fzf-tab. Creates symlinks for `.zshrc` and `starship.toml`. Safe to re-run.
+
+---
+
 Personal configuration files for terminal, editors, and tools.
 
 ## Contents
