@@ -72,7 +72,34 @@ install_omz_plugins() {
     fi
 }
 
+_symlink() {
+    local src="$1"
+    local dest="$2"
+
+    if [[ -L "$dest" ]]; then
+        if [[ "$(readlink "$dest")" == "$src" ]]; then
+            ok "Symlink already correct: $dest"
+            return
+        fi
+        warn "Replacing existing symlink: $dest → $(readlink "$dest")"
+        rm "$dest"
+    elif [[ -e "$dest" ]]; then
+        warn "$dest exists — backed up to $dest.bak"
+        mv "$dest" "$dest.bak"
+    fi
+
+    ln -s "$src" "$dest"
+    ok "Symlink created: $dest → $src"
+}
+
+install_symlinks() {
+    mkdir -p "$HOME/.config"
+    _symlink "$SCRIPT_DIR/.zshrc"        "$HOME/.zshrc"
+    _symlink "$SCRIPT_DIR/starship.toml" "$HOME/.config/starship.toml"
+}
+
 check_requirements
 install_packages
 install_omz
 install_omz_plugins
+install_symlinks
