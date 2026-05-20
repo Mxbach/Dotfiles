@@ -51,6 +51,28 @@ install_omz() {
     ok "Oh My Zsh installed"
 }
 
+install_omz_plugins() {
+    local custom_plugins="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins"
+
+    if [[ ! -d "$custom_plugins/zsh-syntax-highlighting" ]]; then
+        info "Cloning zsh-syntax-highlighting..."
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+            "$custom_plugins/zsh-syntax-highlighting"
+        ok "zsh-syntax-highlighting installed"
+    else
+        ok "zsh-syntax-highlighting already installed, skipping"
+    fi
+
+    if [[ ! -d "$custom_plugins/fzf-tab" ]]; then
+        info "Cloning fzf-tab..."
+        git clone https://github.com/Aloxaf/fzf-tab "$custom_plugins/fzf-tab"
+        ok "fzf-tab installed"
+    else
+        ok "fzf-tab already installed, skipping"
+    fi
+}
+
 check_requirements
 install_packages
 install_omz
+install_omz_plugins
