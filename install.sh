@@ -18,6 +18,10 @@ check_requirements() {
         fail "yay not found. Install it from: https://github.com/Jguer/yay"
     fi
     ok "yay found"
+    if ! command -v curl &>/dev/null; then
+        fail "curl not found. Install it with: yay -S curl"
+    fi
+    ok "curl found"
 }
 
 install_packages() {
@@ -39,7 +43,11 @@ install_omz() {
         return
     fi
     info "Installing Oh My Zsh..."
-    RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    local installer
+    installer="$(mktemp)"
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o "$installer"
+    RUNZSH=no CHSH=no sh "$installer"
+    rm -f "$installer"
     ok "Oh My Zsh installed"
 }
 
