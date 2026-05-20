@@ -33,5 +33,16 @@ install_packages() {
     done
 }
 
+install_omz() {
+    if [[ -d "$HOME/.oh-my-zsh" ]]; then
+        ok "Oh My Zsh already installed, skipping"
+        return
+    fi
+    info "Installing Oh My Zsh..."
+    RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    ok "Oh My Zsh installed"
+}
+
 check_requirements
 install_packages
+install_omz
