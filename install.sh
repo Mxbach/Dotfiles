@@ -20,4 +20,18 @@ check_requirements() {
     ok "yay found"
 }
 
+install_packages() {
+    local packages=(starship fastfetch zsh fzf)
+    for pkg in "${packages[@]}"; do
+        if pacman -Qi "$pkg" &>/dev/null; then
+            ok "$pkg already installed, skipping"
+        else
+            info "Installing $pkg via yay..."
+            yay -S --noconfirm "$pkg"
+            ok "$pkg installed"
+        fi
+    done
+}
+
 check_requirements
+install_packages
