@@ -98,8 +98,23 @@ install_symlinks() {
     _symlink "$SCRIPT_DIR/starship.toml" "$HOME/.config/starship.toml"
 }
 
-check_requirements
-install_packages
-install_omz
-install_omz_plugins
-install_symlinks
+print_summary() {
+    printf "\n"
+    printf "${GREEN}Done!${NC} Next steps:\n"
+    printf "  1. Restart your shell or run: source ~/.zshrc\n"
+    printf "  2. Verify Starship renders correctly\n"
+    printf "  3. If prompt symbols look broken, install JetBrains Mono Nerd Font:\n"
+    printf "     https://www.nerdfonts.com/font-downloads\n"
+}
+
+main() {
+    printf "Setting up zsh + starship...\n\n"
+    check_requirements
+    install_packages
+    install_omz
+    install_omz_plugins
+    install_symlinks
+    print_summary
+}
+
+main "$@"
