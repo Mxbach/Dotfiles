@@ -53,6 +53,7 @@ install_omz() {
 
 install_omz_plugins() {
     local custom_plugins="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins"
+    mkdir -p "$custom_plugins"
 
     if [[ ! -d "$custom_plugins/zsh-syntax-highlighting" ]]; then
         info "Cloning zsh-syntax-highlighting..."
