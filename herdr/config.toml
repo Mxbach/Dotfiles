@@ -7,14 +7,6 @@ name = "one-dark"
 agent_panel_scope = "all"
 prompt_new_tab_name = false
 
-[keys]
-reload_config = "R"
-rename_tab = ","
-focus_pane_left = "left"
-focus_pane_down = "down"
-focus_pane_up = "up"
-focus_pane_right = "right"
-
 [keys.indexed]
 workspaces = "ctrl+shift"
 tabs = "ctrl"
