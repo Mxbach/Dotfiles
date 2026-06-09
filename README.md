@@ -8,7 +8,7 @@ cd ~/Coding/Dotfiles
 ./install.sh
 ```
 
-Requires `yay`. Installs: Oh My Zsh, Starship, fastfetch, fzf, zsh-syntax-highlighting, fzf-tab. Creates symlinks for `.zshrc` and `starship.toml`. Safe to re-run.
+Requires `yay`. Installs: Oh My Zsh, Starship, fastfetch, zsh, fzf, zsh-syntax-highlighting, fzf-tab. Creates symlinks for `.zshrc` and `starship.toml`. Safe to re-run.
 
 ---
 
@@ -27,6 +27,8 @@ Personal configuration files for terminal, editors, and tools.
 | `Zed/settings.json` | Zed editor settings |
 | `solaar/rules.yaml` | Solaar rules for Logitech mouse |
 | `opencode/opencode.json` | OpenCode configuration |
+| `claude/statusline-command.sh` | Claude Code custom status line script |
+| `herdr/config.toml` | herdr configuration |
 | `clipCat` | Script to copy file contents to clipboard |
 
 ---
@@ -60,8 +62,8 @@ Then inside tmux: `prefix + I` to install plugins.
 - Runs `fastfetch` on shell start
 
 **Plugins:**
-- `git`, `archlinux`, `pip`, `ssh`, `tldr`, `fzf-tab`
-- `zsh-syntax-highlighting` (install manually)
+- `git`, `archlinux`, `zsh-syntax-highlighting`, `pip`, `ssh`, `tldr`, `fzf-tab`
+- `zsh-syntax-highlighting` and `fzf-tab` are installed manually (handled by `install.sh`)
 
 **Symlink:**
 ```bash
@@ -149,6 +151,33 @@ Vim extension settings with relative line numbers. Several default Vim key captu
 ## OpenCode (`opencode/opencode.json`)
 
 Configures the [Superpowers](https://github.com/obra/superpowers) plugin and sets Bash/edit permissions to ask before running.
+
+---
+
+## Claude Code (`claude/statusline-command.sh`)
+
+Custom status line script for Claude Code. Reads the session JSON on stdin and renders, separated by `|`:
+
+- Current directory (with `$HOME` shortened to `~`)
+- Git branch with a `*` dirty indicator
+- Model display name
+- Context window usage (`ctx:N%`)
+- 5-hour rate-limit usage (`usage:N%`)
+
+Point the `statusLine` command in your Claude Code settings at this script:
+```json
+{ "statusLine": { "type": "command", "command": "~/Coding/Dotfiles/claude/statusline-command.sh" } }
+```
+
+---
+
+## herdr (`herdr/config.toml`)
+
+Configuration for herdr:
+
+- **Theme:** One Dark
+- Onboarding disabled, agent panel scoped to all
+- **Indexed keybindings:** workspaces `Ctrl+Shift`, tabs `Ctrl`, agents `Alt`
 
 ---
 
