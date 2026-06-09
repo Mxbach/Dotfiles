@@ -20,7 +20,7 @@ Personal configuration files for terminal, editors, and tools.
 |---|---|
 | `.tmux.conf` | tmux configuration |
 | `.zshrc` | Zsh shell configuration |
-| `starship.toml` | Starship prompt theme (Catppuccin Mocha powerline) |
+| `starship/` | Starship prompt themes (`tokyo_night.toml` default, `catppuccin.toml` variant) |
 | `alacritty.toml` | Alacritty terminal emulator config (Windows/WSL) |
 | `ghostty/config` | Ghostty terminal emulator config (Linux) |
 | `VSCode/settings.json` | VS Code editor settings |
@@ -70,20 +70,28 @@ ln -s ~/Coding/Dotfiles/.zshrc ~/.zshrc
 
 ---
 
-## Starship (`starship.toml`)
+## Starship (`starship/`)
 
-Powerline-style prompt using the **Catppuccin Mocha** palette. Segments from left to right:
+Powerline-style prompts. Two variants live in `starship/`:
 
-`OS` → `Directory` → `Git branch/status` → `Language versions` → `Conda env` → `Time`
+| Variant | File | Notes |
+|---|---|---|
+| **Tokyo Night** (default) | `starship/tokyo_night.toml` | Active prompt symlinked by `install.sh` |
+| Catppuccin Mocha | `starship/catppuccin.toml` | All four Catppuccin palettes defined (Mocha active) |
 
-- Shows username always, truncates path to 3 segments
-- Displays command duration (with milliseconds, notifies after 45s)
+Common segments, left to right: `OS` → `Directory` → `Git branch/status` → `Language versions` → `Time`
+
+- Truncates path to 3 segments
 - `❯` success / `❮` vim mode indicators
-- All four Catppuccin palettes defined (Mocha active)
 
-**Symlink:**
+**Symlink** (the default):
 ```bash
-ln -s ~/Coding/Dotfiles/starship.toml ~/.config/starship.toml
+ln -s ~/Coding/Dotfiles/starship/tokyo_night.toml ~/.config/starship.toml
+```
+
+`install.sh` does this for you. To install a different variant, set `STARSHIP_VARIANT` (the filename without `.toml`):
+```bash
+STARSHIP_VARIANT=catppuccin ./install.sh
 ```
 
 ---

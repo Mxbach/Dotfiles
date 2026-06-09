@@ -12,6 +12,7 @@ warn() { printf "${YELLOW}[!]${NC} %s\n" "$1"; }
 fail() { printf "${RED}[✗]${NC} %s\n" "$1"; exit 1; }
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+STARSHIP_VARIANT="${STARSHIP_VARIANT:-tokyo_night}"
 
 check_requirements() {
     if ! command -v yay &>/dev/null; then
@@ -95,8 +96,10 @@ _symlink() {
 
 install_symlinks() {
     mkdir -p "$HOME/.config"
-    _symlink "$SCRIPT_DIR/.zshrc"        "$HOME/.zshrc"
-    _symlink "$SCRIPT_DIR/starship.toml" "$HOME/.config/starship.toml"
+    local starship_src="$SCRIPT_DIR/starship/$STARSHIP_VARIANT.toml"
+    [[ -f "$starship_src" ]] || fail "No starship variant: $STARSHIP_VARIANT (looked for $starship_src)"
+    _symlink "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
+    _symlink "$starship_src"      "$HOME/.config/starship.toml"
 }
 
 print_summary() {
