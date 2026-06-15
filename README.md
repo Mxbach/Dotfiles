@@ -164,6 +164,8 @@ Custom status line script for Claude Code. Reads the session JSON on stdin and r
 - Context window usage (`ctx:N%`)
 - 5-hour rate-limit usage (`usage:N%`)
 
+Requires `jq` to parse the session JSON.
+
 Point the `statusLine` command in your Claude Code settings at this script:
 ```json
 { "statusLine": { "type": "command", "command": "~/Coding/Dotfiles/claude/statusline-command.sh" } }
