@@ -43,8 +43,8 @@
 # resize-overlay-duration = 4s 200ms
 
 keybind = ctrl+shift+W=close_surface
-background-opacity = 0.65
-background-blur = true
+background-opacity = 1
+background-blur = false
 
 # window size
 window-width  = 130
