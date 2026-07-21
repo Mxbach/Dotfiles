@@ -4,7 +4,6 @@ onboarding = false
 name = "one-dark"
 
 [ui]
-agent_panel_scope = "all"
 prompt_new_tab_name = false
 
 [keys]
